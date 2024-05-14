@@ -11,8 +11,67 @@
 3. MySQL 5.7.5+ or MariaDB 10.2+
 
 
-### Steps
+### Steps (from this repository)
 
+#### WordPress site setup
+
+First we will setup a WordPress site on top of which we will setup CiviCRM. For creating the WordPress site we will require a database.
+
+1. Login to the MySQL terminal
+   ```sh
+   mysql -u root -p
+   ```
+
+1. From the MySQL terminal, create a database
+   ```sql
+   create database civicrm;
+   exit
+   ```
+
+1. Clone this repository
+   ```sh
+   git clone https://github.com/pokhiii/civicrm.git
+   ```
+
+1. Change to project root directory
+   ```sh
+   cd civicrm
+   ```
+
+1. Create the WordPress config file (**specify the correct database credentials**)
+   ```sh
+   wp config create --dbname=civicrm --dbuser=root --dbpass=
+   ```
+
+1. Install WordPress and create admin
+   ```sh
+   wp core install --url=civicrm.test --title="CiviCRM" --admin_user=admin --admin_password=admin --admin_email=admin@example.com
+   ```
+
+1. Create a virtual host
+   ```sh
+   valet link civicrm
+   ```
+
+1. Secure the virtual host
+   ```sh
+   valet secure civicrm
+   ```
+
+#### Setup CiviCRM
+
+1. Activate the plugin
+   ```sh
+   wp plugin activate civicrm
+   ```
+
+2. Go to `https://civicrm.test/wp-admin` and configure CiviCRM.
+   1. Check all the Components
+   2. And click on `Install CiviCRM`
+
+### Steps (from scratch)
+
+> _You probably don't need to do it. @pokhiii has already done these and pushed it in this repository._
 #### WordPress site setup
 
 First we will setup a WordPress site on top of which we will setup CiviCRM. For creating the WordPress site we will require a database.
