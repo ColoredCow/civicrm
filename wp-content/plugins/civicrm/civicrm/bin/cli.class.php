@@ -351,7 +351,7 @@ class civicrm_cli_csv_exporter extends civicrm_cli {
     }
 
     $out = fopen("php://output", 'w');
-    fputcsv($out, $this->columns, $this->separator, '"');
+    fputcsv($out, $this->columns ?? [], $this->separator, '"');
 
     $this->row = 1;
     $result = civicrm_api($this->_entity, 'Get', $this->_params);
