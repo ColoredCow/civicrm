@@ -1,0 +1,27 @@
+name: Import CiviCRM - Staging
+on:
+  push:
+    branches: main
+
+jobs:
+  import:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      
+      - name: SSH and Import
+        uses: appleboy/ssh-action@master
+        env:
+          SSH_BUILD_DIRECTORY: ${{ secrets.SSH_BUILD_DIRECTORY }}
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USERNAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          envs: SSH_BUILD_DIRECTORY
+          script: |
+            cd $SSH_BUILD_DIRECTORY
+            git checkout -f
+            git pull origin main
+            ./bin/import_civicrm.sh
