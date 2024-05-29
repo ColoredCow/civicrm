@@ -21,7 +21,7 @@ git checkout $MAIN_BRANCH
 git pull origin $MAIN_BRANCH
 
 # Create a new branch
-NEW_BRANCH="civicrm-update-${TIMESTAMP}"
+NEW_BRANCH="configuration-${TIMESTAMP}"
 git checkout -b $NEW_BRANCH
 echo "Switched to a new branch: ${NEW_BRANCH}"
 
@@ -44,7 +44,6 @@ mv $ZIP_FILE $PROJECT_ROOT/$BACKUP_ZIP_DIR
 cd $PROJECT_ROOT
 git add $BACKUP_ZIP_DIR/$ZIP_FILE
 git commit -m "Auto-generated backup: ${ZIP_FILE}"
-git push origin $NEW_BRANCH
 
-echo "Backup created and pushed to branch: ${NEW_BRANCH}"
-echo "Please create a PR to merge the changes into the main branch."
+echo "Backup created and commited to branch: ${NEW_BRANCH}"
+echo "You can simply push the branch and create a PR."
