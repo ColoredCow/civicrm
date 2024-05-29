@@ -5,45 +5,30 @@ set -e
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
 PROJECT_ROOT="$(dirname "$SCRIPT_DIR")"
 
-# Define variables
-BACKUP_ZIP_DIR="configurations"
-MAIN_BRANCH="fix/civicrm/csv-export" # change after testing to "main"
+EXPORT_DIR_NAME="exports/"
+EXPORT_DIR_PATH="$PROJECT_ROOT/$EXPORT_DIR_NAME"
 TIMESTAMP=$(date +%s)
-ZIP_FILE="civicrm-backup-${TIMESTAMP}.zip"
+ZIP_FILE="${TIMESTAMP}-export.zip"
 
-if [ -n "$(git status --porcelain)" ]; then
-  echo "There are unstaged changes. Please commit or stash them before proceeding."
-  exit 1
-fi
+# Create the exports directory if it doesn't exist
+mkdir -p $EXPORT_DIR_PATH
 
-# Pull the latest changes from main branch
-git checkout $MAIN_BRANCH
-git pull origin $MAIN_BRANCH
+echo "Backing up..."
+wp civicrm core backup --backup-dir=$EXPORT_DIR_PATH/civicrm-backup --yes
+echo "Backup complete"
 
-# Create a new branch
-NEW_BRANCH="configuration-${TIMESTAMP}"
-git checkout -b $NEW_BRANCH
-echo "Switched to a new branch: ${NEW_BRANCH}"
+cd $EXPORT_DIR_PATH
 
-# Generate CiviCRM backup
-echo "Generating CiviCRM backup..."
-wp civicrm core backup --yes
-echo "CiviCRM backup generation complete."
+cd civicrm-backup
 
-# Move up one level and create the ZIP archive
+rm civicrm.zip
+
 cd ..
+
 zip -r $ZIP_FILE civicrm-backup
 
-# Create the backup versions directory if it doesn't exist
-mkdir -p $PROJECT_ROOT/$BACKUP_ZIP_DIR
+rm -rf civicrm-backup
 
-# Move the ZIP file to the backup versions directory
-mv $ZIP_FILE $PROJECT_ROOT/$BACKUP_ZIP_DIR
-
-# Commit and push the changes
 cd $PROJECT_ROOT
-git add $BACKUP_ZIP_DIR/$ZIP_FILE
-git commit -m "Auto-generated backup: ${ZIP_FILE}"
 
-echo "Backup created and commited to branch: ${NEW_BRANCH}"
-echo "You can simply push the branch and create a PR."
+echo "Export ${ZIP_FILE} saved successfully to ${EXPORT_DIR_PATH}"
