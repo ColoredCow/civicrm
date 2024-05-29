@@ -5,7 +5,7 @@ set -e
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
 PROJECT_ROOT="$(dirname "$SCRIPT_DIR")"
 
-EXPORT_DIR_NAME="exports/"
+EXPORT_DIR_NAME="wp-content/civi-exports"
 EXPORT_DIR_PATH="$PROJECT_ROOT/$EXPORT_DIR_NAME"
 TIMESTAMP=$(date +%s)
 ZIP_FILE="${TIMESTAMP}-export.zip"
