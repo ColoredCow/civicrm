@@ -1,7 +1,12 @@
 #!/bin/bash
 set -e
 
+# Determine the script's directory and infer the project root directory
+SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
+PROJECT_ROOT="$(dirname "$SCRIPT_DIR")"
+
 EXPORT_DIR_NAME="exports"
+EXPORT_DIR_PATH=$PROJECT_ROOT/$EXPORT_DIR_NAME
 
 cd $EXPORT_DIR_NAME
 
