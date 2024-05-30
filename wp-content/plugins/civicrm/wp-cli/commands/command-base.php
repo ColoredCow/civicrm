@@ -362,23 +362,17 @@ abstract class CLI_Tools_CiviCRM_Command_Base extends \WP_CLI\CommandWithDBObjec
     $exit_on_error = FALSE;
     $return_detailed = TRUE;
 
+    // Store the current directory.
+    $originalDir = getcwd();
+    $targetDir = dirname($directory);
+
+    // Create the command to change to the target directory, run zip, and then change back to the original directory.
+    $command = "cd {$targetDir} && zip -rq {$destination} ./" . basename($directory) . " && cd {$originalDir}";
+
     // Run the command.
-    $command = 'pushd ' . dirname($directory) . '; ' . "zip -rq {$destination} ./" . basename($directory) . '; popd';
-    $d = WP_CLI::launch('pwd', $exit_on_error, $return_detailed);
-    $e = WP_CLI::launch('whoami', $exit_on_error, $return_detailed);
-
-    WP_CLI::log($d->stdout);
-    WP_CLI::log($e->stdout);
-    WP_CLI::log($command);
-
     $process_run = WP_CLI::launch($command, $exit_on_error, $return_detailed);
-
-
-
-    WP_CLI::log($process_run);
-
     if (0 !== $process_run->return_code) {
-      WP_CLI::error(sprintf(WP_CLI::colorize('Failed to compress zip archive: %y%s.%n'), $this->zip_error_msg($process_run->return_code)));
+        WP_CLI::error(sprintf(WP_CLI::colorize('Failed to compress zip archive: %y%s.%n'), $this->zip_error_msg($process_run->return_code)));
     }
 
     return TRUE;
