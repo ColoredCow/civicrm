@@ -23,5 +23,5 @@ jobs:
           script: |
             cd $SSH_BUILD_DIRECTORY
             git checkout -f
-            git pull origin main
-            # ./bin/import_civicrm.sh
+            git pull origin feat/continous-delivery
+            ./bin/import_civicrm.sh
