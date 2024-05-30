@@ -369,12 +369,13 @@ abstract class CLI_Tools_CiviCRM_Command_Base extends \WP_CLI\CommandWithDBObjec
 
     WP_CLI::log($d->stdout);
     WP_CLI::log($e->stdout);
+    WP_CLI::log($command);
 
     $process_run = WP_CLI::launch($command, $exit_on_error, $return_detailed);
 
 
 
-
+    WP_CLI::log($process_run);
 
     if (0 !== $process_run->return_code) {
       WP_CLI::error(sprintf(WP_CLI::colorize('Failed to compress zip archive: %y%s.%n'), $this->zip_error_msg($process_run->return_code)));
