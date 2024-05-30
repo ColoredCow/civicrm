@@ -25,6 +25,8 @@ rm civicrm.zip
 
 cd ..
 
+echo "zip -r $ZIP_FILE civicrm-backup"
+
 zip -r $ZIP_FILE civicrm-backup
 
 rm -rf civicrm-backup
