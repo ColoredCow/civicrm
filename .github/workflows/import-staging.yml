@@ -1,7 +1,7 @@
 name: Import CiviCRM - Staging
 on:
   push:
-    branches: main
+    branches: feat/continous-delivery
 
 jobs:
   import:
