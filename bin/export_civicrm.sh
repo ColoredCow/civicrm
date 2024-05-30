@@ -14,6 +14,7 @@ ZIP_FILE="${TIMESTAMP}-export.zip"
 mkdir -p $EXPORT_DIR_PATH
 
 echo "Backing up..."
+echo "wp civicrm core backup --backup-dir=$EXPORT_DIR_PATH/civicrm-backup --yes"
 wp civicrm core backup --backup-dir=$EXPORT_DIR_PATH/civicrm-backup --yes
 echo "Backup complete"
 
