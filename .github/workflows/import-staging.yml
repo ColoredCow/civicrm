@@ -23,4 +23,4 @@ jobs:
             cd $SSH_BUILD_DIRECTORY
             git checkout -f
             git pull origin main
-            ./bin/import_civicrm.sh
+            # ./bin/import_civicrm.sh
