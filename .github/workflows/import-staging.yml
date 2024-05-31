@@ -1,8 +1,7 @@
 name: Import CiviCRM - Staging
 on:
   push:
-    # branches: main
-    branches: feat/continous-delivery
+    branches: main
 
 jobs:
   import:
@@ -23,6 +22,6 @@ jobs:
           envs: SSH_BUILD_DIRECTORY
           script: |
             cd $SSH_BUILD_DIRECTORY
-            git checkout -f
-            git pull origin feat/continous-delivery
+            git checkout -f main
+            git pull origin main
             ./bin/import_civicrm.sh
