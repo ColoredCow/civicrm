@@ -145,7 +145,7 @@ First we will setup a WordPress site on top of which we will setup CiviCRM. For 
 
 #### Export Instructions
 
-1. Navigate to the project directory in your terminal.
+1. Navigate to the project root directory in your terminal.
 2. Execute the following command to export the current CiviCRM settings: 
    ```
    ./bin/export_civicrm.sh
