@@ -141,9 +141,9 @@ First we will setup a WordPress site on top of which we will setup CiviCRM. For 
    2. And click on `Install CiviCRM`
 
 
-#### Export and import CiviCRM Setting 
+## Export and import CiviCRM Setting 
 
-## Export Instructions
+#### Export Instructions
 
 1. Navigate to the project directory in your terminal.
 2. Execute the following command to export the current CiviCRM settings: 
@@ -153,7 +153,7 @@ First we will setup a WordPress site on top of which we will setup CiviCRM. For 
 2. A new ZIP file will be generated, for example: `wp-content/civi-exports/1717416031-export.zip`.
 3. Push the generated ZIP file to GitHub.
 
-## Import Instructions
+#### Import Instructions
 
 1. Pull the latest changes from GitHub.
 2. Execute the following command to import the CiviCRM settings: 
