@@ -139,3 +139,24 @@ First we will setup a WordPress site on top of which we will setup CiviCRM. For 
 1. Go to `https://civicrm.test/wp-admin` and configure CiviCRM.
    1. Check all the Components
    2. And click on `Install CiviCRM`
+
+
+#### Export and import CiviCRM Setting 
+
+## For Export
+
+1. Hit the below command on the terminal inside the project directory to export the current CiviCRM Setting
+   ```
+   ./bin/export_civicrm.sh
+   ```
+2. A new zip will generate for example `wp-content/civi-exports/1717416031-export.zip`
+3. Push the generated zip file into the github 
+
+## For Import
+
+1. Take the lastest pull form the github and then hit the below command
+   ```
+   ./bin/import_civicrm.sh
+   ```
+
+
