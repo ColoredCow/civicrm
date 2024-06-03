@@ -160,5 +160,5 @@ First we will setup a WordPress site on top of which we will setup CiviCRM. For 
    ```
    ./bin/import_civicrm.sh
    ```
-
-
+3. Go to the CiviCRM settings, choose "Sample page" under "WordPress Base page" and then click the "Update" button.
+4. Click on the "Rebuild the CiviCRM menu" link under the "Useful Links" section (also within the CiviCRM settings).
