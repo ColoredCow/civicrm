@@ -24,6 +24,8 @@ cd civicrm-backup
 
 sed -i.bak 's/DEFINER=`[^`]*`@`localhost`/DEFINER=`civicrm`@`localhost`/g' civicrm-db.sql
 
+rm civicrm.zip
+
 cd ..
 
 echo "zip -r $ZIP_FILE civicrm-backup"
