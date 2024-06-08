@@ -28,4 +28,6 @@ cd ..
 # Use yes to automate the confirmation prompt
 yes y | wp civicrm core restore --backup-dir=$EXPORT_DIR_PATH/civicrm-backup --yes
 
+rm -rf $EXPORT_DIR_PATH/civicrm-backup
+
 echo "Imported ${ZIP_FILE} successfully"
