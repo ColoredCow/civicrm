@@ -25,8 +25,17 @@ unzip -o $ZIP_FILE
 
 cd ..
 
+# Determine the full path to wp command
+if which wp &> /dev/null; then
+    # macOS or Linux
+    WP_CLI=$(which wp)
+else
+    # Windows
+    WP_CLI=$(where wp)
+fi
+
 # Use yes to automate the confirmation prompt
-yes y | wp civicrm core restore --backup-dir=$EXPORT_DIR_PATH/civicrm-backup --yes
+yes y | "$WP_CLI" civicrm core restore --backup-dir=$EXPORT_DIR_PATH/civicrm-backup --yes
 
 rm -rf $EXPORT_DIR_PATH/civicrm-backup
 
